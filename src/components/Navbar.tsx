@@ -100,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* GitHub Star Link */}
           <a
-            href="https://github.com"
+            href="https://github.com/emirhan-create/viberoster"
             target="_blank"
             rel="noreferrer"
             className="p-2 rounded-xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-[#18181B] transition"
