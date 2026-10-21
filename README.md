@@ -15,7 +15,29 @@
 
 **VibeRoster** is an ultra-fast, open-source library of 120 curated, production-grade AI system instructions, `CLAUDE.md`, and `.cursorrules` files.
 
-Designed for developers, designers, and everyday AI subscribers who want to skip prompt engineering guesswork, slash token consumption by up to 90%, and load battle-tested coding specialists into their daily workflows with a single click.
+Designed for developers, designers, and everyday AI subscribers who want to skip prompt engineering guesswork, slash token consumption by up to 90%, and load battle-tested coding specialists into their daily workflows with a single click or terminal command.
+
+---
+
+## ⚡ Quick Start: Zero-Install Terminal CLI
+
+Install production-ready rules into your project in 1 second directly from your terminal:
+
+```bash
+# 1. Interactive project setup wizard (select stack & token savers)
+npx viberoster init
+
+# 2. Or install a specific specialist directly:
+npx viberoster add token-saver    # Claude Token Saver & Conciseness Protocol
+npx viberoster add nextjs         # Next.js 15 App Router Expert
+npx viberoster add supabase       # Postgres, RLS & Auth Architect
+npx viberoster add repomix        # Codebase packing specialist
+
+# 3. Search across 120 curated agents from your terminal:
+npx viberoster search "mobile"
+```
+
+*Automatically generates optimized `.cursorrules` and `CLAUDE.md` files in your workspace.*
 
 ---
 

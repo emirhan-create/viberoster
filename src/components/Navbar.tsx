@@ -98,15 +98,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>Roster ({teamCount})</span>
           </button>
 
-          {/* GitHub Star Link */}
+          {/* GitHub Star Button */}
           <a
             href="https://github.com/emirhan-create/viberoster"
             target="_blank"
             rel="noreferrer"
-            className="p-2 rounded-xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-[#18181B] transition"
-            title="View on GitHub"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-zinc-100 dark:bg-[#18181B] text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white border border-zinc-200/80 dark:border-white/[0.08] transition text-xs sm:text-[13px] font-medium shadow-xs"
+            title="Star on GitHub"
           >
-            <Github className="w-4 h-4" />
+            <Github className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Star</span>
           </a>
         </div>
 

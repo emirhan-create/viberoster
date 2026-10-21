@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Search, Sparkles, X, ShieldCheck, Check, Layers } from 'lucide-react';
+import { Search, Sparkles, X, ShieldCheck, Check, Layers, Terminal } from 'lucide-react';
 import { AGENTS } from './data/agents';
 import { Agent, Category } from './types';
 import { Navbar } from './components/Navbar';
@@ -77,6 +77,13 @@ export function App() {
   const [teamModalOpen, setTeamModalOpen] = useState(false);
   const [guideModalOpen, setGuideModalOpen] = useState(false);
   const [calcModalOpen, setCalcModalOpen] = useState(false);
+  const [copiedCli, setCopiedCli] = useState(false);
+
+  const handleCopyCli = (command = 'npx viberoster init') => {
+    navigator.clipboard.writeText(command);
+    setCopiedCli(true);
+    setTimeout(() => setCopiedCli(false), 2000);
+  };
 
   // Search & Filter
   const [searchQuery, setSearchQuery] = useState('');
@@ -233,6 +240,25 @@ export function App() {
             <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
               The curated agent roster and system instructions for Claude, Cursor, and ChatGPT. Select, combine, and copy 120 production-tested AI rules with zero API keys.
             </p>
+
+            {/* Terminal CLI Quick Bar */}
+            <div className="mt-3 flex flex-wrap items-center gap-2.5">
+              <button
+                onClick={() => handleCopyCli('npx viberoster init')}
+                className="group flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-900 dark:bg-[#151518] text-white text-xs font-mono border border-zinc-800 dark:border-white/[0.08] hover:border-zinc-750 dark:hover:border-white/20 transition shadow-xs"
+                title="Click to copy CLI command"
+              >
+                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-zinc-500">$</span>
+                <span className="text-zinc-100 font-medium">npx viberoster init</span>
+                <span className="text-[10px] text-zinc-400 group-hover:text-white transition ml-1 px-1.5 py-0.5 rounded bg-white/10">
+                  {copiedCli ? 'Copied!' : 'Copy'}
+                </span>
+              </button>
+              <span className="text-[11px] text-zinc-500 dark:text-zinc-400 hidden sm:inline">
+                Instant 1-line project setup for Cursor &amp; Claude
+              </span>
+            </div>
           </div>
 
           {/* Interactive Search Bar & Smart Wizard */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Copy, Check, Plus, ShieldCheck, Github } from 'lucide-react';
+import { X, Copy, Check, Plus, ShieldCheck, Github, Terminal } from 'lucide-react';
 import { Agent } from '../types';
 import { sanitizeOutput } from '../utils/security';
 import { getAgentGitHubUrl } from '../utils/github';
@@ -20,8 +20,15 @@ export const AgentModal: React.FC<AgentModalProps> = ({
   const [platform, setPlatform] = useState<'claude' | 'chatgpt' | 'cursor'>('claude');
   const [copiedRule, setCopiedRule] = useState(false);
   const [copiedPromptIndex, setCopiedPromptIndex] = useState<number | null>(null);
+  const [copiedCli, setCopiedCli] = useState(false);
 
   if (!agent) return null;
+
+  const handleCopyCli = () => {
+    navigator.clipboard.writeText(`npx viberoster add ${agent.id}`);
+    setCopiedCli(true);
+    setTimeout(() => setCopiedCli(false), 1500);
+  };
 
   const githubUrl = getAgentGitHubUrl(agent);
 
@@ -171,6 +178,24 @@ export const AgentModal: React.FC<AgentModalProps> = ({
             >
               Cursor / IDE
             </button>
+          </div>
+        </div>
+
+        {/* CLI 1-Line Quick Copy */}
+        <div className="px-6 pb-3">
+          <div 
+            onClick={handleCopyCli}
+            className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-zinc-900 dark:bg-[#1A1A1E] text-white text-[11px] font-mono cursor-pointer border border-zinc-800 dark:border-white/[0.06] hover:border-zinc-700 transition select-none shadow-2xs"
+            title="Click to copy CLI install command"
+          >
+            <div className="flex items-center gap-2 truncate">
+              <Terminal className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+              <span className="text-zinc-500">$</span>
+              <span className="text-zinc-200 truncate">npx viberoster add {agent.id}</span>
+            </div>
+            <span className="text-[10px] text-zinc-400 font-sans flex-shrink-0 ml-2 px-1.5 py-0.5 rounded bg-white/10">
+              {copiedCli ? 'Copied!' : 'Copy CLI'}
+            </span>
           </div>
         </div>
 
